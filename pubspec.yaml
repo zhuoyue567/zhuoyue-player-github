@@ -1,0 +1,80 @@
+name: zhuoyue_player
+description: "ZhuoYue Player — 第三方网易云音乐 + Bilibili 收藏音乐播放器（Material You / 亚克力）"
+publish_to: 'none'
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # ---- 状态管理 ----
+  flutter_riverpod: ^3.4.3
+
+  # ---- 窗口 / Material You 亚克力材质 ----
+  # window_manager: 无边框窗口、拖拽区、最大化/最小化、圆角
+  window_manager: ^0.5.2
+  # ffi + win32: 自行实现 Mica / Acrylic / Blur（不依赖已停更的 flutter_acrylic）
+  ffi: ^2.2.0
+  win32: ^6.4.0
+
+  # ---- Monet 莫奈取色（与 Android Material You 同源的官方算法库）----
+  material_color_utilities: ^0.13.0
+  # image: 封面解码 + 降采样后送入量化器
+  image: ^4.10.1
+
+  # ---- 网络 / 存储 ----
+  dio: ^5.11.1
+  shared_preferences: ^2.5.6
+  path_provider: ^2.1.6
+
+  # ---- 音频播放（Windows: just_audio_windows / Media Foundation）----
+  just_audio: ^0.10.6
+  just_audio_windows: ^0.2.3
+
+  # ---- 工具 ----
+  crypto: ^3.0.7
+  uuid: ^4.6.0
+  intl: ^0.20.3
+  file_selector: ^1.0.4
+  # qr: 纯 Dart 的二维码编码器（只依赖 meta，无原生插件）。
+  # 哔哩的扫码登录只返回一个 URL，必须由客户端自己画二维码；
+  # 选 qr + 自绘 CustomPainter 而不是 qr_flutter，是为了避开
+  # 后者对 Flutter 版本的耦合（它最后一次发版是 2023 年）。
+  qr: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  # 内置字体。
+  #
+  # 事实：zhuzi.ttf **只有 w400 一个字面**（OS/2 usWeightClass = 400、
+  # subfamily = Regular，也不是可变字体）。所以它并不会"顺便解决"粗体问题：
+  # 请求 w600/w700 时 Flutter 仍然只能靠 faux-bold 描边合成。
+  # 用这个单字面字体做像素测量：w500 与 w400 的墨迹完全相同（比值 1.0000，
+  # 引擎直接复用 w400），而 w600/w700 的墨迹多出 51%（比值 1.5124，在描边
+  # 合成）—— 中文小字在这种合成加粗下会明显发虚、笔画粗细不匀。
+  #
+  # 因此代码侧统一只用 w400 / w500，不请求这个字体没有的字重。这条不变量由
+  # test/typography_weight_test.dart 扫源码钉住，改动字重前请先读它。
+  #
+  # 如果将来要真正的粗体，需要**再引入一个带 Bold 字面的字体**（在下面同一个
+  # family 里补一条 weight: 700 的 asset），或者默认改用系统字体
+  # （Windows 上的微软雅黑自带真正的 Regular + Bold）。
+  fonts:
+    - family: Zhuzi
+      fonts:
+        - asset: assets/fonts/zhuzi.ttf

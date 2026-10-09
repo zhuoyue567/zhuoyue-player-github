@@ -1,0 +1,37 @@
+MIT License
+
+Copyright (c) 2026 卓越播放器 (ZhuoYue Player) 贡献者
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 适用范围说明 / Scope note
+
+本许可证**只覆盖本仓库作者编写的代码与文档**（`lib/`、`test/`、`scripts/`、`windows/` 中的
+本项目部分，以及 `docs/`、`README.md`、`CHANGELOG.md`）。
+
+不在此许可范围内的东西：
+
+- **内嵌运行时**（`runtime/` 下的便携版 Node.js 与 `NeteaseCloudMusicApi` 及其依赖）：各有
+  自己的许可证，本项目只是通过 `scripts/fetch-runtime.ps1` 下载、由使用者自行获取。详见
+  README 附录「第三方致谢」。
+- **内置字体** `assets/fonts/zhuzi.ttf`：作者自用字体，其再分发许可**未经核实**，不随本
+  MIT 许可被再许可。有顾虑的使用者可以按 README 说明替换或删除该文件。
+- 通过第三方接口获取的任何音乐、封面、歌词等内容：版权属于各自权利人。
